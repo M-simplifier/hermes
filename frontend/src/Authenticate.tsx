@@ -12,9 +12,7 @@ export default function Authenticate<T>({ mutate }: { mutate: KeyedMutator<T> })
         return <Login mutate={mutate} setMode={setMode}
             username={username} setUsername={setUsername}
             password={password} setPassword={setPassword} />
-    }
-
-    if (mode === "signup") {
+    } else {
         return <Signup mutate={mutate} setMode={setMode}
             username={username} setUsername={setUsername}
             password={password} setPassword={setPassword} />

@@ -48,7 +48,7 @@ export async function login(
         return false
     }
 
-    const data = await resToken.json()
+    const data = await resToken.json() as { access_token: string }
     localStorage.setItem("jwtToken", data.access_token)
     return true
 }

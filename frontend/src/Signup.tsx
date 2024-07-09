@@ -40,7 +40,7 @@ export default function Signup<T>(
             return
         }
 
-        mutate()
+        void mutate()
     }
 
     return (

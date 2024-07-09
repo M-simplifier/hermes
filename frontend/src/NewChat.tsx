@@ -36,14 +36,14 @@ export default function NewChat({ room, mutate, text, setText }
     }
 
     return (
-        <form className="grid m-4" onSubmit={handleSubmit}>
+        <form className="grid m-4" onSubmit={(e) => void handleSubmit(e)}>
             <textarea
                 className="outline-none resize-none border p-4"
                 rows={10}
                 placeholder="Your Chat"
                 name="title"
                 value={text}
-                onChange={e => setText(e.target.value)}
+                onChange={e => { setText(e.target.value) }}
                 required />
             <button className="border border-t-0 h-12 transition hover:bg-green-200" type="submit">Send</button>
         </form>

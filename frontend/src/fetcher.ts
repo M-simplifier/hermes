@@ -10,12 +10,12 @@ const fetcher = async <T>(url: string): Promise<T> => {
         })
 
     if (!res.ok) {
-        const error = new Error("Token is invalid") as Error & { status: number }
+        const error = new Error("fetch failed.") as Error & { status: number }
         error.status = res.status
         throw error
     }
 
-    return await res.json()
+    return await res.json() as T
 }
 
 export default fetcher

@@ -18,7 +18,7 @@ export default function AuthenticateForm(
         }) {
     return (
         <div className="grid m-4">
-            <form onSubmit={handleSubmit}
+            <form onSubmit={(e) => void handleSubmit(e)}
                 className="grid md:w-[30rem] md:mx-auto mt-20">
                 <input
                     className="border border-b-0 p-4 outline-none"
@@ -26,7 +26,7 @@ export default function AuthenticateForm(
                     type="text"
                     name="username"
                     value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    onChange={e => { setUsername(e.target.value) }}
                     required />
                 <input
                     className="border border-b-0 p-4 outline-none"
@@ -34,7 +34,7 @@ export default function AuthenticateForm(
                     type="password"
                     name="password"
                     value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={e => { setPassword(e.target.value) }}
                     required />
                 <button
                     className="hover:bg-green-300 transition h-12 border"
@@ -49,11 +49,13 @@ export default function AuthenticateForm(
             </form>
             <button
                 className="py-4 text-gray-400 transition-all hover:text-gray-800"
-                onClick={() => setMode(
-                    currentMode === "login" ?
-                        "signup" :
-                        "login",
-                )}
+                onClick={() => {
+                    setMode(
+                        currentMode === "login" ?
+                            "signup" :
+                            "login",
+                    )
+                }}
             >
                 {
                     currentMode === "login" ?

@@ -3,7 +3,7 @@ import { KeyedMutator } from "swr"
 export default function Logout<T>({ mutate }: { mutate: KeyedMutator<T> }) {
     function handleClick() {
         localStorage.removeItem("jwtToken")
-        mutate()
+        void mutate()
     }
 
     return (

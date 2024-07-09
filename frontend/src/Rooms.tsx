@@ -13,7 +13,7 @@ const URL = `${config.apiUrl}/`
 type RoomsResponse = Room[]
 
 export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
-    const { data: rooms, error, isLoading, mutate } = useSWR(URL, fetcher<RoomsResponse>)
+    const { data: rooms, error, isLoading, mutate } = useSWR<RoomsResponse, Error & { status: number }>(URL, fetcher<RoomsResponse>)
     const [title, setTitle] = useState("")
 
     if (error?.status === 401) {
@@ -31,7 +31,7 @@ export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
     return (
         <div className="grid container mx-auto">
             <div className="grid grid-flow-col justify-between items-start">
-                <NewRoom setRoom={setRoom} mutate={mutate}
+                <NewRoom setRoom={setRoom} mutate={() => void mutate()}
                     title={title} setTitle={setTitle} />
                 <Logout mutate={mutate} />
             </div>

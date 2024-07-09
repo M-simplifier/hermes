@@ -14,7 +14,7 @@ type ChatsResponse = { title: string, chats: Chat[] }
 
 export default function Chats({ room, setRoom }: { room: number, setRoom: SetState<number> }) {
     const url = `${config.apiUrl}/${room}`
-    const { data, error, isLoading, mutate } = useSWR(url, fetcher<ChatsResponse>)
+    const { data, error, isLoading, mutate } = useSWR<ChatsResponse, Error & { status: number }>(url, fetcher<ChatsResponse>)
     const [text, setText] = useState("")
 
     if (error?.status === 401) {
@@ -39,7 +39,7 @@ export default function Chats({ room, setRoom }: { room: number, setRoom: SetSta
             {data.chats.map((chat) => (
                 <ChatModule key={chat.id} chat={chat} />
             ))}
-            <NewChat text={text} setText={setText} room={room} mutate={mutate} />
+            <NewChat text={text} setText={setText} room={room} mutate={() => void mutate()} />
         </div>
     )
 }

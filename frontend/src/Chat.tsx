@@ -14,7 +14,7 @@ type UserResponse = { id: number, username: string }
 
 export default function ChatModule({ chat }: { chat: Chat }) {
     const url = `${config.apiUrl}/users/${chat.owner_id}`
-    const { data: user, error, isLoading, mutate } = useSWR(url, fetcher<UserResponse>)
+    const { data: user, error, isLoading, mutate } = useSWR<UserResponse, Error & { status: number }>(url, fetcher<UserResponse>)
 
     if (error?.status === 401) {
         return <Authenticate mutate={mutate} />

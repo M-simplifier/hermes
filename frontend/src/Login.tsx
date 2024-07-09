@@ -28,7 +28,7 @@ export default function Login<T>(
             return
         }
 
-        mutate()
+        void mutate()
     }
 
     return (
