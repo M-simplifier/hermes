@@ -13,7 +13,7 @@ const URL = `${config.apiUrl}/`
 type RoomsResponse = Room[]
 
 export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
-    const { data: rooms, error, isLoading, mutate } = useSWR<RoomsResponse, Error & { status: number }>(URL, fetcher<RoomsResponse>)
+    const { data: rooms, error, isLoading, mutate } = useSWR<RoomsResponse, Error & { status: number }>(URL, fetcher<RoomsResponse>, { refreshInterval: 500 })
     const [title, setTitle] = useState("")
 
     if (error?.status === 401) {

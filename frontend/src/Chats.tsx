@@ -14,7 +14,7 @@ type ChatsResponse = { title: string, chats: Chat[] }
 
 export default function Chats({ room, setRoom }: { room: number, setRoom: SetState<number> }) {
     const url = `${config.apiUrl}/${room}`
-    const { data, error, isLoading, mutate } = useSWR<ChatsResponse, Error & { status: number }>(url, fetcher<ChatsResponse>)
+    const { data, error, isLoading, mutate } = useSWR<ChatsResponse, Error & { status: number }>(url, fetcher<ChatsResponse>, { refreshInterval: 500 })
     const [text, setText] = useState("")
 
     if (error?.status === 401) {
