@@ -13,31 +13,44 @@ const URL = `${config.apiUrl}/`
 type RoomsResponse = Room[]
 
 export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
-    const { data: rooms, error, isLoading, mutate } = useSWR<RoomsResponse, Error & { status: number }>(URL, fetcher<RoomsResponse>, { refreshInterval: 500 })
-    const [title, setTitle] = useState("")
+  const {
+    data: rooms,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR<RoomsResponse, Error & { status: number }>(
+    URL,
+    fetcher<RoomsResponse>,
+    { refreshInterval: 500 },
+  )
+  const [title, setTitle] = useState("")
 
-    if (error?.status === 401) {
-        return <Authenticate mutate={mutate} />
-    }
+  if (error?.status === 401) {
+    return <Authenticate mutate={mutate} />
+  }
 
-    if (!rooms || error) {
-        return <p>Something is wrong...</p>
-    }
+  if (!rooms || error) {
+    return <p>Something is wrong...</p>
+  }
 
-    if (isLoading) {
-        return <p>Loading...</p>
-    }
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
-    return (
-        <div className="grid container mx-auto">
-            <div className="grid grid-flow-col justify-between items-start">
-                <NewRoom setRoom={setRoom} mutate={() => void mutate()}
-                    title={title} setTitle={setTitle} />
-                <Logout mutate={mutate} />
-            </div>
-            {rooms.map((room: Room) => (
-                <RoomModule key={room.id} room={room} setRoom={setRoom} />
-            ))}
-        </div>
-    )
+  return (
+    <div className="grid container mx-auto">
+      <div className="grid grid-flow-col justify-between items-start">
+        <NewRoom
+          setRoom={setRoom}
+          mutate={() => void mutate()}
+          title={title}
+          setTitle={setTitle}
+        />
+        <Logout mutate={mutate} />
+      </div>
+      {rooms.map((room: Room) => (
+        <RoomModule key={room.id} room={room} setRoom={setRoom} />
+      ))}
+    </div>
+  )
 }
