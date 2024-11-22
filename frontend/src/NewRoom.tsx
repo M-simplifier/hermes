@@ -47,9 +47,12 @@ export default function NewRoom({
   }
 
   return (
-    <form className="grid grid-flow-col" onSubmit={(e) => void handleSubmit(e)}>
+    <form
+      className="grid grid-cols-[1fr_auto] md:mr-4"
+      onSubmit={(e) => void handleSubmit(e)}
+    >
       <input
-        className="outline-none border-b lg:w-[30rem] md:w-[20rem] focus:border-gray-700 transition-all"
+        className="outline-none border border-r-0 md:p-4 p-2 focus:placeholder:invisible"
         placeholder="Room Title"
         type="text"
         name="title"
@@ -60,7 +63,7 @@ export default function NewRoom({
         required
       />
       <button
-        className="h-full text-gray-400 hover:text-gray-700 px-1 transition"
+        className="h-full md:p-4 p-2 border hover:text-stone-50 hover:bg-stone-700"
         type="submit"
       >
         New

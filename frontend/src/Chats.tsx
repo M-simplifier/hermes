@@ -39,7 +39,7 @@ export default function Chats({
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="max-w-[64rem] mx-auto px-2">
       <Header>
         <BackToHome setRoom={setRoom} />
         <Logout mutate={mutate} />

@@ -38,7 +38,7 @@ export default function ChatModule({ chat }: { chat: Chat }) {
   }
 
   return (
-    <div className="m-4">
+    <div className="my-2 border p-4 rounded-md">
       <p className="font-bold">{user.username}</p>
       <p className="whitespace-pre-wrap" key={chat.id}>
         {chat.text}

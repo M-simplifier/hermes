@@ -38,8 +38,8 @@ export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
   }
 
   return (
-    <div className="grid container mx-auto">
-      <div className="grid grid-flow-col justify-between items-start">
+    <div className="grid max-w-[64rem] mx-auto px-2">
+      <div className="grid grid-cols-[1fr_auto] my-4">
         <NewRoom
           setRoom={setRoom}
           mutate={() => void mutate()}

@@ -6,4 +6,8 @@
 
 * {
   font-family: "Roboto", "BIZ UDGothic";
+  background-color: #fafaf9;
+  border-color: #44403c;
+  color: #44403c;
+  transition-duration: 150ms;
 }
