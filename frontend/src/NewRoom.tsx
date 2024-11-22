@@ -53,6 +53,7 @@ export default function NewRoom({
     >
       <input
         className="outline-none border border-r-0 md:p-4 p-2 focus:placeholder:invisible"
+        size={8}
         placeholder="Room Title"
         type="text"
         name="title"

@@ -19,10 +19,11 @@ export default function AuthenticateForm({
   setPassword: SetState<string>
 }) {
   return (
-    <div className="grid md:w-[30rem] md:mx-auto mt-20">
+    <div className="grid sm:max-w-[30rem] sm:mx-auto mx-8 mt-20">
       <form onSubmit={(e) => void handleSubmit(e)} className="grid">
         <input
           className="border border-b-0 p-4 outline-none focus:placeholder:invisible"
+          size={8}
           placeholder="username"
           type="text"
           name="username"
@@ -34,6 +35,7 @@ export default function AuthenticateForm({
         />
         <input
           className="border border-b-0 p-4 outline-none focus:placeholder:invisible"
+          size={8}
           placeholder="password"
           type="password"
           name="password"
