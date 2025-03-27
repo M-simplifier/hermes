@@ -14,7 +14,7 @@ export default function RoomModule({
 }) {
   return (
     <button
-      className="p-8 hover:bg-stone-700 hover:text-stone-50 break-all hyphens-auto text-left border mb-2"
+      className="p-8 hover:bg-[var(--main-color)] hover:text-[var(--main-background-color)] break-all hyphens-auto text-left bg-[var(--sub-background-color)] rounded-md mb-2"
       onClick={() => {
         setRoom(room.id)
       }}

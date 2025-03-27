@@ -48,11 +48,11 @@ export default function NewRoom({
 
   return (
     <form
-      className="grid grid-cols-[1fr_auto] md:mr-4"
+      className="grid grid-cols-[1fr_auto] my-8 bg-[var(--sub-background-color)] p-4 rounded-md"
       onSubmit={(e) => void handleSubmit(e)}
     >
       <input
-        className="outline-none border border-r-0 md:p-4 p-2 focus:placeholder:invisible"
+        className="outline-none rounded-full bg-[var(--light-background-color)] md:p-4 p-2 focus:placeholder:invisible placeholder:text-[var(--sub-color)]"
         size={8}
         placeholder="Room Title"
         type="text"
@@ -64,7 +64,7 @@ export default function NewRoom({
         required
       />
       <button
-        className="h-full md:p-4 p-2 border hover:text-stone-50 hover:bg-stone-700"
+        className="h-full md:p-4 p-2 border hover:text-[var(--main-background-color)] hover:bg-[var(--main-color)] rounded-md ml-4"
         type="submit"
       >
         New

@@ -4,10 +4,37 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --main-color: #6f0;
+  --sub-color: rgba(102, 255, 0, 0.4);
+  --main-background-color: #121212;
+  --sub-background-color: #232323;
+  --light-background-color: #333;
+}
+
+@keyframes logo {
+  0% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0);
+    opacity: 1;
+  }
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--main-background-color);
+}
+
 * {
   font-family: "Roboto", "BIZ UDGothic";
-  background-color: #fafaf9;
-  border-color: #44403c;
-  color: #44403c;
+  border-color: var(--main-color);
+  color: var(--main-color);
   transition-duration: 150ms;
 }

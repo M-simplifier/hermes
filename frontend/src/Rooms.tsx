@@ -7,6 +7,7 @@ import { useState } from "react"
 import RoomModule, { Room } from "./Room"
 import Logout from "./Logout"
 import { config } from "./config"
+import Header from "./Header"
 
 const URL = `${config.apiUrl}/`
 
@@ -39,15 +40,16 @@ export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
 
   return (
     <div className="grid max-w-[64rem] mx-auto px-2">
-      <div className="grid grid-cols-[1fr_auto] my-4">
-        <NewRoom
-          setRoom={setRoom}
-          mutate={() => void mutate()}
-          title={title}
-          setTitle={setTitle}
-        />
+      <Header>
+        <h1 className="text-4xl animate-[logo_1s_linear_forwards]">Hermes</h1>
         <Logout mutate={mutate} />
-      </div>
+      </Header>
+      <NewRoom
+        setRoom={setRoom}
+        mutate={() => void mutate()}
+        title={title}
+        setTitle={setTitle}
+      />
       {rooms.map((room: Room) => (
         <RoomModule key={room.id} room={room} setRoom={setRoom} />
       ))}

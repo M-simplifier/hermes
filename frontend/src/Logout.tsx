@@ -8,7 +8,7 @@ export default function Logout<T>({ mutate }: { mutate: KeyedMutator<T> }) {
 
   return (
     <button
-      className="border text-stone-50 bg-stone-700 h-full md:px-4 px-2 hover:text-stone-700 hover:bg-stone-50"
+      className="border rounded-md text-[var(--main-background-color)] bg-[var(--main-color)] h-full md:px-4 px-2 hover:text-[var(--main-color)] hover:bg-transparent"
       onClick={handleClick}
     >
       Logout

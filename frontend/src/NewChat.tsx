@@ -40,9 +40,12 @@ export default function NewChat({
   }
 
   return (
-    <form className="grid my-8" onSubmit={(e) => void handleSubmit(e)}>
+    <form
+      className="grid my-8 sm:grid-cols-[1fr_auto] sm:items-center bg-[var(--sub-background-color)] p-4 rounded-md"
+      onSubmit={(e) => void handleSubmit(e)}
+    >
       <textarea
-        className="outline-none resize-none border p-4 focus:placeholder:invisible"
+        className="outline-none resize-none p-4 focus:placeholder:invisible placeholder:text-[var(--sub-color)] bg-[var(--light-background-color)] rounded-md"
         rows={10}
         placeholder="Your Chat"
         name="title"
@@ -53,7 +56,7 @@ export default function NewChat({
         required
       />
       <button
-        className="border border-t-0 h-12 hover:bg-stone-700 hover:text-stone-50"
+        className="rounded-md border h-12 hover:bg-[var(--main-color)] hover:text-[var(--main-background-color)] w-16 mx-auto mt-4 sm:ml-4"
         type="submit"
       >
         Send
