@@ -1,0 +1,12 @@
+{
+	"name": "backend",
+	"dockerComposeFile": "../../compose.yaml",
+	"service": "backend",
+	"shutdownAction": "none",
+	"workspaceFolder": "/workspace/backend",
+	"postCreateCommand": "pip install --user -r requirements.txt",
+	"postStartCommand": "fastapi dev api/main.py --host 0.0.0.0",
+	"forwardPorts": [
+		8000
+	]
+}
