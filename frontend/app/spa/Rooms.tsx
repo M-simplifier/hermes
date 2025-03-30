@@ -1,17 +1,17 @@
-import useSWR from "swr"
-import fetcher from "./fetcher"
-import NewRoom from "./NewRoom"
-import Authenticate from "./Authenticate"
-import { SetState } from "./utils"
-import { useState } from "react"
-import RoomModule, { Room } from "./Room"
-import Logout from "./Logout"
-import { config } from "./config"
-import Header from "./Header"
+import useSWR from "swr";
+import fetcher from "./fetcher";
+import NewRoom from "./NewRoom";
+import Authenticate from "./Authenticate";
+import type { SetState } from "./utils";
+import { useState } from "react";
+import RoomModule, { type Room } from "./Room";
+import Logout from "./Logout";
+import { config } from "./config";
+import Header from "./Header";
 
-const URL = `${config.apiUrl}/`
+const URL = `${config.apiUrl}/`;
 
-type RoomsResponse = Room[]
+type RoomsResponse = Room[];
 
 export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
   const {
@@ -23,19 +23,19 @@ export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
     URL,
     fetcher<RoomsResponse>,
     { refreshInterval: 500 },
-  )
-  const [title, setTitle] = useState("")
+  );
+  const [title, setTitle] = useState("");
 
   if (error?.status === 401) {
-    return <Authenticate mutate={mutate} />
+    return <Authenticate mutate={mutate} />;
   }
 
   if (!rooms || error) {
-    return <p>Something is wrong...</p>
+    return <p>Something is wrong...</p>;
   }
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <p>Loading...</p>;
   }
 
   return (
@@ -54,5 +54,5 @@ export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
         <RoomModule key={room.id} room={room} setRoom={setRoom} />
       ))}
     </div>
-  )
+  );
 }

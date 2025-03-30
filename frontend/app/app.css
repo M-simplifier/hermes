@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --color-main: #6f0;
+  --color-sub: rgba(102, 255, 0, 0.4);
+  --color-main-bg: #121212;
+  --color-sub-bg: #232323;
+  --color-light-bg: #333;
+}
+
+@keyframes logo {
+  0% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0);
+    opacity: 1;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    background-color: var(--color-main-bg);
+  }
+
+  * {
+    font-family: "Roboto", "BIZ UDGothic";
+    border-color: var(--color-main);
+    color: var(--color-main);
+    transition-duration: 150ms;
+  }
+}
