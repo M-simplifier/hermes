@@ -2,7 +2,6 @@ import useSWR from "swr";
 import fetcher from "./fetcher";
 import NewRoom from "./NewRoom";
 import Authenticate from "./Authenticate";
-import type { SetState } from "./utils";
 import { useState } from "react";
 import RoomModule, { type Room } from "./Room";
 import Logout from "./Logout";
@@ -13,7 +12,7 @@ const URL = `${config.apiUrl}/`;
 
 type RoomsResponse = Room[];
 
-export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
+export default function Rooms() {
   const {
     data: rooms,
     error,
@@ -44,14 +43,9 @@ export default function Rooms({ setRoom }: { setRoom: SetState<number> }) {
         <h1 className="text-4xl animate-[logo_1s_linear_forwards]">Hermes</h1>
         <Logout mutate={mutate} />
       </Header>
-      <NewRoom
-        setRoom={setRoom}
-        mutate={() => void mutate()}
-        title={title}
-        setTitle={setTitle}
-      />
+      <NewRoom mutate={() => void mutate()} title={title} setTitle={setTitle} />
       {rooms.map((room: Room) => (
-        <RoomModule key={room.id} room={room} setRoom={setRoom} />
+        <RoomModule key={room.id} room={room} />
       ))}
     </div>
   );

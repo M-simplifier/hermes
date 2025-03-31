@@ -1,18 +1,14 @@
-import type { FormEvent } from "react";
-import type { SetState } from "./utils";
+import { useState, type FormEvent } from "react";
 import { config } from "./config";
 
 export default function NewChat({
-  room,
+  roomId,
   mutate,
-  text,
-  setText,
 }: {
-  room: number;
+  roomId: number;
   mutate: () => void;
-  text: string;
-  setText: SetState<string>;
 }) {
+  const [text, setText] = useState<string>("");
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -27,7 +23,7 @@ export default function NewChat({
       return;
     }
 
-    const res = await fetch(`${config.apiUrl}/${String(room)}`, {
+    const res = await fetch(`${config.apiUrl}/${String(roomId)}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

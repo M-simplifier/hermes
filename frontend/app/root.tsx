@@ -24,6 +24,15 @@ export const links: Route.LinksFunction = () => [
   { rel: "icon", type: "image/svg+xml", href: "/wind.svg" },
 ];
 
+export const meta: Route.MetaFunction = () => [
+  { title: "Hermes" },
+  {
+    name: "description",
+    content:
+      "Simple to use. Really fast. Hermes is your chat room application.",
+  },
+];
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">

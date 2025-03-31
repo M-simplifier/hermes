@@ -1,18 +1,18 @@
 import type { FormEvent } from "react";
 import type { SetState } from "./utils";
 import { config } from "./config";
+import { useNavigate } from "react-router";
 
 export default function NewRoom({
-  setRoom,
   mutate,
   title,
   setTitle,
 }: {
-  setRoom: SetState<number>;
   mutate: () => void;
   title: string;
   setTitle: SetState<string>;
 }) {
+  const navigate = useNavigate();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -40,7 +40,7 @@ export default function NewRoom({
       const location = res.headers.get("location");
       const roomNumber = location ? parseInt(location) : NaN;
       if (!isNaN(roomNumber)) {
-        setRoom(roomNumber);
+        await navigate(`/room/${String(roomNumber)}`);
       } else {
         alert("Sorry, something is wrong...");
       }
