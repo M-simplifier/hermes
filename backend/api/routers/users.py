@@ -14,7 +14,7 @@ class UserResponse(BaseModel):
 
 @router.get("/{user_id}", response_model=UserResponse)
 async def read_user(
-    db: db_dependency, user: user_dependency, user_id: int = Path(gt=0)
+    db: db_dependency, user_id: int = Path(gt=0)
 ):
     user = db.query(User).filter(User.id == user_id).first()
     return {"id": user.id, "username": user.username}

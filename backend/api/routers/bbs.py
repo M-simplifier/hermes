@@ -38,7 +38,7 @@ class ChatsResponse(BaseModel):
 
 @router.get("/{room_id}", status_code=status.HTTP_200_OK, response_model=ChatsResponse)
 async def read_chats(
-    db: db_dependency, user: user_dependency, room_id: int = Path(gt=0)
+    db: db_dependency, room_id: int = Path(gt=0)
 ):
     title = db.query(Room).filter(Room.id == room_id).first().title
     chats = db.query(Chat).filter(Chat.room_id == room_id).all()
