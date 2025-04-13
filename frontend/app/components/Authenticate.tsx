@@ -1,13 +1,8 @@
 import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
-import type { KeyedMutator } from "swr";
 
-export default function Authenticate<T>({
-  mutate,
-}: {
-  mutate: KeyedMutator<T>;
-}) {
+export default function Authenticate() {
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +10,6 @@ export default function Authenticate<T>({
   if (mode === "login") {
     return (
       <Login
-        mutate={mutate}
         setMode={setMode}
         username={username}
         setUsername={setUsername}
@@ -26,7 +20,6 @@ export default function Authenticate<T>({
   } else {
     return (
       <Signup
-        mutate={mutate}
         setMode={setMode}
         username={username}
         setUsername={setUsername}

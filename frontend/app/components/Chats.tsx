@@ -31,7 +31,7 @@ export default function Chats({ roomId }: { roomId: number }) {
     <div className="max-w-[64rem] mx-auto px-2">
       <Header>
         <BackToHome />
-        <Logout mutate={mutate} />
+        <Logout />
       </Header>
       <h1 className="text-4xl text-center my-8 break-all">{data.title}</h1>
       {data.chats.map((chat) => (
