@@ -36,7 +36,7 @@ export default function Rooms() {
     <div className="grid max-w-[64rem] mx-auto px-2">
       <Header>
         <h1 className="text-4xl animate-[logo_1s_linear_forwards]">Hermes</h1>
-        <Logout mutate={mutate} />
+        <Logout />
       </Header>
       <NewRoom mutate={() => void mutate()} title={title} setTitle={setTitle} />
       {rooms.map((room: Room) => (
