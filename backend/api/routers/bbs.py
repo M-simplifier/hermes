@@ -48,7 +48,6 @@ async def read_chats(
 @router.get("/", status_code=status.HTTP_200_OK, response_model=List[RoomResponse])
 async def read_rooms(
     db: db_dependency,
-    user: user_dependency,
 ):
     rooms = db.query(Room).order_by(desc(Room.id)).all()
     return rooms
