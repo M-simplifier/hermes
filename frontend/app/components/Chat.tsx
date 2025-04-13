@@ -1,6 +1,5 @@
 import useSWR from "swr";
 import fetcher from "./fetcher";
-import Authenticate from "./Authenticate";
 import { config } from "./config";
 
 export interface Chat {
@@ -21,16 +20,11 @@ export default function ChatModule({ chat }: { chat: Chat }) {
     data: user,
     error,
     isLoading,
-    mutate,
   } = useSWR<UserResponse, Error & { status: number }>(
     url,
     fetcher<UserResponse>,
     { refreshInterval: 500 },
   );
-
-  if (error?.status === 401) {
-    return <Authenticate mutate={mutate} />;
-  }
 
   if (!user || error) {
     return <p>Something is wrong...</p>;

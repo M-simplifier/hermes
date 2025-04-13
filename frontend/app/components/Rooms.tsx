@@ -1,7 +1,6 @@
 import useSWR from "swr";
 import fetcher from "./fetcher";
 import NewRoom from "./NewRoom";
-import Authenticate from "./Authenticate";
 import { useState } from "react";
 import RoomModule, { type Room } from "./Room";
 import Logout from "./Logout";
@@ -24,10 +23,6 @@ export default function Rooms() {
     { refreshInterval: 500 },
   );
   const [title, setTitle] = useState("");
-
-  if (error?.status === 401) {
-    return <Authenticate mutate={mutate} />;
-  }
 
   if (!rooms || error) {
     return <p>Something is wrong...</p>;

@@ -2,7 +2,6 @@ import useSWR from "swr";
 import fetcher from "./fetcher";
 import NewChat from "./NewChat";
 import ChatModule, { type Chat } from "./Chat";
-import Authenticate from "./Authenticate";
 import Logout from "./Logout";
 import BackToHome from "./BackToHome";
 import Header from "./Header";
@@ -19,10 +18,6 @@ export default function Chats({ roomId }: { roomId: number }) {
     ChatsResponse,
     Error & { status: number }
   >(url, fetcher<ChatsResponse>, { refreshInterval: 500 });
-
-  if (error?.status === 401) {
-    return <Authenticate mutate={mutate} />;
-  }
 
   if (!data || error) {
     return <p>Something is wrong...</p>;
