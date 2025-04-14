@@ -12,6 +12,13 @@ class UserResponse(BaseModel):
     username: str
 
 
+@router.get("/current", response_model=UserResponse)
+async def current_user(
+    db: db_dependency, user: user_dependency
+):
+    return user
+
+
 @router.get("/{user_id}", response_model=UserResponse)
 async def read_user(
     db: db_dependency, user_id: int = Path(gt=0)

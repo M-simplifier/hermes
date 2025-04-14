@@ -1,6 +1,9 @@
-export default function Logout() {
+import type { KeyedMutator } from "swr";
+
+export default function Logout<T>({ mutate }: { mutate: KeyedMutator<T> }) {
   function handleClick() {
     localStorage.removeItem("jwtToken");
+    void mutate();
   }
 
   return (

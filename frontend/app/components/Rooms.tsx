@@ -3,7 +3,6 @@ import fetcher from "./fetcher";
 import NewRoom from "./NewRoom";
 import { useState } from "react";
 import RoomModule, { type Room } from "./Room";
-import Logout from "./Logout";
 import { config } from "./config";
 import Header from "./Header";
 
@@ -36,7 +35,6 @@ export default function Rooms() {
     <div className="grid max-w-[64rem] mx-auto px-2">
       <Header>
         <h1 className="text-4xl animate-[logo_1s_linear_forwards]">Hermes</h1>
-        <Logout />
       </Header>
       <NewRoom mutate={() => void mutate()} title={title} setTitle={setTitle} />
       {rooms.map((room: Room) => (

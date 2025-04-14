@@ -2,7 +2,6 @@ import useSWR from "swr";
 import fetcher from "./fetcher";
 import NewChat from "./NewChat";
 import ChatModule, { type Chat } from "./Chat";
-import Logout from "./Logout";
 import BackToHome from "./BackToHome";
 import Header from "./Header";
 import { config } from "./config";
@@ -31,7 +30,6 @@ export default function Chats({ roomId }: { roomId: number }) {
     <div className="max-w-[64rem] mx-auto px-2">
       <Header>
         <BackToHome />
-        <Logout />
       </Header>
       <h1 className="text-4xl text-center my-8 break-all">{data.title}</h1>
       {data.chats.map((chat) => (
