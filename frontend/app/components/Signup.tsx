@@ -1,8 +1,9 @@
 import type { FormEvent } from "react";
-import { login, type SetState, signup } from "./utils";
+import { type AuthResponse, login, type SetState, signup } from "./utils";
 import AuthenticateForm from "./AuthenticateForm";
 import { config } from "./config";
-import { useNavigate } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
+import type { KeyedMutator } from "swr";
 
 const tokenURL = `${config.apiUrl}/auth/token`;
 const signupURL = `${config.apiUrl}/auth/`;
@@ -20,6 +21,7 @@ export default function Signup({
   password: string;
   setPassword: SetState<string>;
 }) {
+  const { mutate } = useOutletContext<{ mutate: KeyedMutator<AuthResponse> }>();
   const navigate = useNavigate();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,6 +40,7 @@ export default function Signup({
       return;
     }
 
+    await mutate();
     await navigate(-1);
   };
 

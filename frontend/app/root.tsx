@@ -9,6 +9,10 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { config } from "./components/config";
+import useSWR from "swr";
+import fetcher from "./components/fetcher";
+import type { AuthResponse, AuthStatus } from "./components/utils";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -51,8 +55,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+const AUTH_URL = `${config.apiUrl}/users/current`;
+
 export default function App() {
-  return <Outlet />;
+  const { data, error, isLoading, mutate } = useSWR<
+    AuthResponse,
+    Error & { status: number }
+  >(AUTH_URL, fetcher<AuthResponse>, { refreshInterval: 500 });
+
+  let authStatus: AuthStatus;
+
+  if (isLoading) {
+    authStatus = { kind: "Loading" };
+  } else if (error && error.status === 401) {
+    authStatus = { kind: "LoggedOut", mutate: mutate };
+  } else if (!error && data) {
+    authStatus = {
+      kind: "LoggedIn",
+      userid: data.id,
+      username: data.username,
+      mutate: mutate,
+    };
+  } else {
+    authStatus = { kind: "Error", error: error as Error };
+  }
+
+  return <Outlet context={authStatus} />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

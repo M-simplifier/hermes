@@ -1,40 +1,30 @@
 import type { ReactNode } from "react";
-import fetcher from "./fetcher";
 import LoginButton from "./LoginButton";
 import Logout from "./Logout";
-import useSWR from "swr";
-import { config } from "./config";
-
-const AUTH_URL = `${config.apiUrl}/users/current`;
-
-interface AuthResponse {
-  id: number;
-  username: string;
-}
+import { useOutletContext } from "react-router";
+import type { AuthStatus } from "./utils";
 
 export default function Header({ children }: { children: ReactNode }) {
-  const { error, isLoading, mutate } = useSWR<
-    AuthResponse,
-    Error & { status: number }
-  >(AUTH_URL, fetcher<AuthResponse>, { refreshInterval: 500 });
+  const authStatus = useOutletContext<AuthStatus>();
 
   let loginOrLogout;
-  if (isLoading) {
+
+  if (authStatus.kind === "Loading") {
     loginOrLogout = (
       <div className="border md:p-4 p-2 hover:text-main-bg hover:bg-main rounded-md">
         Loading...
       </div>
     );
-  } else if (error && error.status !== 401) {
+  } else if (authStatus.kind === "LoggedOut") {
+    loginOrLogout = <LoginButton />;
+  } else if (authStatus.kind === "LoggedIn") {
+    loginOrLogout = <Logout mutate={authStatus.mutate} />;
+  } else {
     loginOrLogout = (
       <div className="border md:p-4 p-2 hover:text-main-bg hover:bg-main rounded-md">
         Error
       </div>
     );
-  } else if (error && error.status === 401) {
-    loginOrLogout = <LoginButton />;
-  } else if (!error) {
-    loginOrLogout = <Logout mutate={mutate} />;
   }
 
   return (

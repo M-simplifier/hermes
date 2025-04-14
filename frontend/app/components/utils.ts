@@ -1,4 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
+import type { KeyedMutator } from "swr";
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;
 
@@ -52,3 +53,19 @@ export async function login(
   localStorage.setItem("jwtToken", data.access_token);
   return true;
 }
+
+export interface AuthResponse {
+  id: number;
+  username: string;
+}
+
+export type AuthStatus =
+  | {
+      kind: "LoggedIn";
+      userid: number;
+      username: string;
+      mutate: KeyedMutator<AuthResponse>;
+    }
+  | { kind: "LoggedOut"; mutate: KeyedMutator<AuthResponse> }
+  | { kind: "Loading" }
+  | { kind: "Error"; error: Error };
