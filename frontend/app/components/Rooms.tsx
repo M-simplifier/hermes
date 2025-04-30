@@ -5,6 +5,8 @@ import { useState } from "react";
 import RoomModule, { type Room } from "./Room";
 import { config } from "./config";
 import Header from "./Header";
+import { useOutletContext } from "react-router";
+import type { AuthStatus } from "./utils";
 
 const URL = `${config.apiUrl}/`;
 
@@ -21,6 +23,9 @@ export default function Rooms() {
     fetcher<RoomsResponse>,
     { refreshInterval: 500 },
   );
+
+  const authState = useOutletContext<AuthStatus>();
+
   const [title, setTitle] = useState("");
 
   if (!rooms || error) {
@@ -36,7 +41,13 @@ export default function Rooms() {
       <Header>
         <h1 className="text-4xl animate-[logo_1s_linear_forwards]">Hermes</h1>
       </Header>
-      <NewRoom mutate={() => void mutate()} title={title} setTitle={setTitle} />
+      {authState.kind === "LoggedIn" && (
+        <NewRoom
+          mutate={() => void mutate()}
+          title={title}
+          setTitle={setTitle}
+        />
+      )}
       {rooms.map((room: Room) => (
         <RoomModule key={room.id} room={room} />
       ))}

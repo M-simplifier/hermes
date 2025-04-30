@@ -5,6 +5,8 @@ import ChatModule, { type Chat } from "./Chat";
 import BackToHome from "./BackToHome";
 import Header from "./Header";
 import { config } from "./config";
+import { useOutletContext } from "react-router";
+import type { AuthStatus } from "./utils";
 
 interface ChatsResponse {
   title: string;
@@ -17,6 +19,8 @@ export default function Chats({ roomId }: { roomId: number }) {
     ChatsResponse,
     Error & { status: number }
   >(url, fetcher<ChatsResponse>, { refreshInterval: 500 });
+
+  const authState = useOutletContext<AuthStatus>();
 
   if (!data || error) {
     return <p>Something is wrong...</p>;
@@ -35,7 +39,9 @@ export default function Chats({ roomId }: { roomId: number }) {
       {data.chats.map((chat) => (
         <ChatModule key={chat.id} chat={chat} />
       ))}
+      {authState.kind === "LoggedIn" && (
       <NewChat roomId={roomId} mutate={() => void mutate()} />
+      )}
     </div>
   );
 }
