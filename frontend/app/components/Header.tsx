@@ -10,11 +10,7 @@ export default function Header({ children }: { children: ReactNode }) {
   let loginOrLogout;
 
   if (authStatus.kind === "Loading") {
-    loginOrLogout = (
-      <div className="border md:p-4 p-2 hover:text-main-bg hover:bg-main rounded-md">
-        Loading...
-      </div>
-    );
+    loginOrLogout = <LoginButton />;
   } else if (authStatus.kind === "LoggedOut") {
     loginOrLogout = <LoginButton />;
   } else if (authStatus.kind === "LoggedIn") {
