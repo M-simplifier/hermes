@@ -53,7 +53,7 @@ export default function NewRoom({
 
   return (
     <form
-      className="grid grid-cols-[1fr_auto] my-8 bg-sub-bg p-4 rounded-md"
+      className="grid grid-cols-[1fr_auto] mb-4 bg-sub-bg p-4 rounded-md"
       onSubmit={(e) => void handleSubmit(e)}
     >
       <input

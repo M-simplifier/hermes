@@ -28,7 +28,7 @@ export default function Header({ children }: { children: ReactNode }) {
   }
 
   return (
-    <header className="grid grid-flow-col justify-between mt-4 min-h-16 items-center">
+    <header className="grid grid-flow-col justify-between my-4 min-h-16 items-center">
       {children}
       {loginOrLogout}
     </header>

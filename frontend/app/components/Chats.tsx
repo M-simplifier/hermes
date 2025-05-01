@@ -35,7 +35,7 @@ export default function Chats({ roomId }: { roomId: number }) {
       <Header>
         <BackToHome />
       </Header>
-      <h1 className="text-4xl text-center my-8 break-all">{data.title}</h1>
+      <h1 className="text-4xl text-center mb-8 break-all">{data.title}</h1>
       {data.chats.map((chat) => (
         <ChatModule key={chat.id} chat={chat} />
       ))}
